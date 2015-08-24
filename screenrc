@@ -1,0 +1,38 @@
+# escape Ctrl-a for server screen
+escape ^Tt
+
+# Messages 
+startup_message off
+
+# Misc 
+autodetach on           
+altscreen on            
+vbell off               
+defutf8 on              
+
+# Scroll-back mode 
+ignorecase on           
+defscrollback 99999     
+bufferfile $HOME/.screen-exchange  
+
+
+# Enable 256 Colors  (http://frexx.de/xterm-256-notes/)  
+# terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+attrcolor b ".I"
+# tell screen how to set colors. AB=background, AF=foreground
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+# erase background with current bg color
+defbce "on"
+
+
+# Create windows on startup 
+screen -t home
+screen -t workspace
+select workspace
+
+
+# Hardstatus 
+# Adds a nice "tabbed" look, kinda long but gracefully pushes the status stuff off-screen if need be
+hardstatus alwayslastline "%{wk}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{wk}%?%+Lw %= %{mk}@%H %{ck}%Y-%m-%d %{yk}%D %{gk}%0c %{rk}%l"
+
